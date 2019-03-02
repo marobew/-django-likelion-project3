@@ -1,0 +1,96 @@
+{%load static%}
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+  <title>HAMBO의 블로그</title>
+  <link rel="stylesheet" href="https://tistory1.daumcdn.net/tistory/2947035/skin/style.css?_T_=1545876707">
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="//t1.daumcdn.net/tistory_admin/lib/jquery/jquery-1.12.4.min.js"></script>
+  <script>
+    (function() {
+      window.orgjQuery = window.jQuery;
+      window.jQuery = tjQuery
+    })()
+  </script>
+
+
+
+
+
+  
+</head>
+
+<body>
+  <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/static/manage/font/notosans.css">
+  <div id="wrap">
+    <header id="header">
+      <h1><a href="{%url 'home'%}">HAMBO의 블로그</a></h1>
+      <button type="button" class="mobile-menu"><span>메뉴</span></button>
+      <div class="menu">
+        <nav id="gnb">
+          <ul class="tt_category">
+              <ul class="category_list">
+                <li class="">
+
+                  {% if user.is_authenticated %}
+                  <li class="">
+                  <a class="link_item">환영합니다. {{ user.username }} 님!</a>
+
+                  <a class="link_item" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                  <form id="logout" method="POST" action="">{% csrf_token %} <input type="hidden" /></form>
+
+                  {% else %}
+                  <li class="">
+                  <a class="link_item" method="POST" action="{%url 'signup'%}">SIGNUP</a>
+                  <li class="">
+                  <a class="link_item" method="POST" action="{%url 'login'%}">LOGIN</a>
+
+                  {% endif %}
+
+                  <ul class="sub_category_list">
+                    <li class="">
+                    <a class="link_item" href="{%url 'home'%}">HOME</a>
+                    <li class="">
+                      <a class="link_sub_item" href="{%url 'new'%}">POST</a>
+                    </li>
+                    <li class="">
+                      <a class="link_sub_item" href="{%url 'portfolio'%}">PORTFOLIO</a>
+                    </li>
+                    <li class="">
+                      <a class="link_sub_item" href="{%static '수료증 - 삼육대 - 위보람.pdf'%}">수료증</a></a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+          </ul>
+        </nav>
+
+      </div>
+
+    </header>
+    <hr>
+    <section class="container">
+      <article id="content">
+        <div class="cover-gallery">
+          <div class="inner">
+            <ul>
+              {%block content%}
+              {%endblock%}
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+    <hr>
+    <footer id="footer">
+      <p class="copyright">위보람, 멋쟁이사자처럼 at 삼육대학교</p>
+    </footer>
+  </div>
+  <script src="https://tistory1.daumcdn.net/tistory/2947035/skin/images/script.js"></script>
+
+</body>
+
+</html

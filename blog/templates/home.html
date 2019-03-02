@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{%block content%}
+{%for blog in blogs.all%}
+
+            <li>
+              <a href="{%url 'detail' blog.id%}">
+                
+                <span class="title">{{blog.title}}</span>
+                <span class="category">{{blog.pub_date}}</span>
+                <span class="excerpt">{{blog.body}}</span>
+              </a>
+            </li>
+
+{%endfor%}
+
+
+<div class="container">
+{%if posts.has_provious%}
+<a href="?=page=1">First</a>
+<a href="?=page={{posts.previous_page_number}}">Previous</a>
+{%endif%}
+
+<span>{{posts.number}}</span>
+<span>of</span>
+<span>{{posts.paginator.num_pages}}</span>
+
+{%if posts.has_next%}
+<a href="?=page={{posts.next_page_number}}">Next</a>
+<a href="?=page={{posts.paginator.num_pages}}">Last</a>
+{%endif%}
+</div>
+{%endblock%}
+
