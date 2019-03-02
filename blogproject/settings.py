@@ -1,4 +1,3 @@
-
 import dj_database_url
 """
 Django settings for blogproject project.
@@ -23,9 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'f_r39f-pot6-4b!(2jbfc)+@m9jdu%27hg+)de_6-xa522fv5g'
-import os
-SECRET_KEY = os.environ.get(
-    'DJANGO_SECRET_KEY', 'f_r39f-pot6-4b!(2jbfc)+@m9jdu%27hg+)de_6-xa522fv5g')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'f_r39f-pot6-4b!(2jbfc)+@m9jdu%27hg+)de_6-xa522fv5g')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -129,22 +126,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'portfolio', 'static'),
     os.path.join(BASE_DIR, 'blogproject', 'static'),
-)
+]  # static 파일들이 현재 어디에 있는지
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
+# static 파일들이 어디로 모일 것인지
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# base dir의 media dir로 미디어 파일을 모음
+
 MEDIA_URL = '/media/'
-
-# Login url path
-LOGIN_URL = '/accounts/login/'
-LOGOUT_REDIRECT_URL = '/'
-LOGIN_REDIRECT_URL = '/'
-
+# /midia/로 url 설정
 
 # Heroku: Update database configuration from $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
